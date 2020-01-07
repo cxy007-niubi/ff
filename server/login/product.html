@@ -69,40 +69,112 @@
 					<span></span>
 				</div>
 				<div class="mid">
-					<img src="" alt="">
+					
+					<img class="b" src="" alt="">
+					<!-- <span></span>
+					<div class="fd"></div>
+					<span></span> -->
 					<!-- n个小花 -->
+					<div class="sb">
+						<button><<</button>
+						<img src="" alt="" style>
+						<img src="" alt="" style>
+						<img src="" alt="" style>
+						<button>>></button>
+						
+					</div>
 					<div class="right">
 						<span>
 							<!-- 名字 -->
 						</span>
 						<span>
+							
 							<!-- 编号 -->
 						</span>
 						<p>
-							<span>订花价格:...</span>
-							<span>市场价格:...</span>
+							<span>订花价格:</span>
+							<span>市场价格:</span>
 						</p>
-						<b>立即购买</b>
-						
-						<b class = "r">加入购物车</b>
+						<img src="../images/product.PNG" alt="">
+						<button>立即购买</button>
+						<button class = "r">加入购物车</button>
 					</div>
 				</div>
+			
+				
 			</div>
 		</main>
+		
+		<span style="position: absolute;display: none;width:80px;height:80px;background: rgba(200,200,200,.3);"></span>
+		<span style="position: absolute;display: none;width:160px;height:160px;background: rgba(200,200,200,.3);"></span>
+		
 	</body>
 	<script src = "../js/cookie.js"></script>
 	<script>
 		class Pro{
 			constructor() {
 			    this.mid = document.querySelector(".mid");
-				this.img();
+			    this.right = document.querySelector(".right");
+			    this.p = document.querySelector(".right p");
+			    this.sb = document.querySelector(" .sb");
+			    this.b = document.querySelector(" .b");
+			    this.sSpan = document.querySelector("main").nextElementSibling;
+				
+				this.addEvent();
+				
+				this.init();
 			}
-			img(){
-				console.log(getCookie("product").img);
-				console.log(JSON.parse(getCookie("product")))
-				// console.log(JSON.parse(JSON.stringify(getCookie("product"))).img)
-				// console.log(JSON.parse(getCookie("product")))
-				// this.mid.children[0].src = JSON.parse(getCookie("product")).img;
+			init(){
+				this.mid.children[0].src = JSON.parse(getCookie("product")).img;
+				this.sb.children[3].src = JSON.parse(getCookie("product")).img;
+				this.sb.children[1].src = JSON.parse(getCookie("product")).img;
+				this.sb.children[2].src = JSON.parse(getCookie("product")).img;
+				this.right.children[0].innerHTML = JSON.parse(getCookie("product")).name;
+				this.p.children[0].innerHTML += JSON.parse(getCookie("product")).price;
+				this.p.children[1].innerHTML += JSON.parse(getCookie("product")).price + 200;
+			}
+			addEvent(){
+				var that = this;
+				this.b.onmouseover = function(e){
+				    that.show(e);
+				}
+				this.b.onmouseout = function(){
+				    // that.hide()
+				}
+				this.b.onmousemove = function(eve){
+				    var e = eve || window.event;
+				    // that.move(e)
+				}
+			}
+			show(e){
+				this.sSpan.style.display = "block";
+				this.sSpan.style.top = e.offsetY + e.offsetTop - 40 + "px";
+				this.sSpan.style.left = e.offsetX + e.offsetLeft - 40 + "px";
+				// this.sSpan.style.height = this.bBox.offsetHeight / this.bImg.offsetHeight * this.sBox.offsetHeight + "px";
+			}
+			hide(){
+				this.sSpan.style.display = "none";
+				this.bBox.style.display = "none";
+			}
+			move(e){
+				var l = e.clientX - this.sBox.offsetLeft - this.sSpan.offsetWidth/2;
+				var t = e.clientY - this.sBox.offsetTop - this.sSpan.offsetHeight/2;
+				if(l<0) l=0;
+				if(t<0) t=0;
+				if(l > this.sBox.offsetWidth - this.sSpan.offsetWidth){
+				    l = this.sBox.offsetWidth - this.sSpan.offsetWidth
+				}
+				if(t > this.sBox.offsetHeight - this.sSpan.offsetHeight){
+				    t = this.sBox.offsetHeight - this.sSpan.offsetHeight
+				}
+				
+				this.sSpan.style.left = l + "px";
+				this.sSpan.style.top = t + "px";
+				var x = l / (this.sBox.offsetWidth - this.sSpan.offsetWidth);
+				var y = t / (this.sBox.offsetHeight - this.sSpan.offsetHeight);
+				
+				this.bImg.style.left = x * (this.bBox.offsetWidth - this.bImg.offsetWidth) + "px";
+				this.bImg.style.top = y * (this.bBox.offsetHeight - this.bImg.offsetHeight) + "px";
 			}
 		}
 		new Pro;
