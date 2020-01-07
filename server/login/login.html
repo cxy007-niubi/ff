@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/login.css">
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<p>全国鲜花速递,鲜花预订行业领导品牌！全国送花客服热线：010-60777792/18511870338</p>
+				<h2>这是登录页面，去<a href="register.html">注册</a></h2>
+			</div>
+		</header>
+		<div class="logo">
+			<div class="container">
+				<img src="../../images/logo2.png" alt="">
+				<span>全国鲜花速递平台</span>
+			</div>
+		</div>
+		<main>
+			<div class="container">
+				<!-- <div class="box">
+			    用户名：<input type="text" id="user"><br>
+			    密码：<input type="text" id="pass"><br>
+			    <input type="button" id="btn" value="登录">
+			    <span></span>
+			</div> -->
+
+				<div class="box">
+					<span>登录</span>
+					<input type="text" placeholder="请输入用户名" id="user"><br>
+					<input type="text" placeholder="密码" id="pass">
+					<br>
+					<input type="text" placeholder="请输入验证码" class="txt3">
+					<p>1234</p><br>
+					<label>
+						<input type="checkbox">自动登录</label>
+					<p>忘记密码</p><br>
+					<input type="button" id="btn" value="立即登录">
+					<span class="span"></span>
+				</div>
+			</div>
+		</main>
+
+	</body>
+</html>
+
+</body>
+<script>
+
+	class Login {
+		constructor() {
+			this.user = document.getElementById("user");
+			this.pass = document.getElementById("pass");
+			this.btn = document.getElementById("btn");
+			this.span = document.querySelector(".span");
+			this.main = document.querySelector("main");
+			this.header = document.querySelector("header");
+			this.logo = document.querySelector(".logo");
+			this.url = "http://localhost:80/server";
+			this.addEvent();
+			this.mainHeight();
+		}
+		mainHeight(){
+			var clintHeight = document.documentElement.clientHeight;
+			var headerH = this.header.offsetHeight;
+			var logoH = this.logo.offsetHeight;
+			this.main.style.height = clintHeight-headerH-logoH+"px";
+		}
+		addEvent() {
+			var that = this;
+			this.btn.onclick = function() {
+				that.u = that.user.value;
+				that.p = that.pass.value;
+				that.load();
+			}
+		}
+		load() {
+			ajaxGet(this.url, res => {
+				console.log(res);
+				console.log(this.url);
+				this.res = JSON.parse(res);
+				this.display();
+			}, {
+				user: this.u,
+				pass: this.p,
+				type: "login"
+			})
+		}
+		display() {
+			if (this.res.code == 0) {
+				this.span.innerHTML = "你的用户名还没有注册，去<a href='register.html'>注册</a>吧";
+			} else if (this.res.code == 1) {
+				this.span.innerHTML = "登录成功，3秒后跳转到<a href='index.html'>首页</a>";
+				setTimeout(() => {
+					location.href = "index.html";
+				}, 3000);
+			} else {
+				this.span.innerHTML = "密码不对，重新输入密码";
+				this.pass.value = "";
+			}
+		}
+	}
+
+	new Login();
+
+	function ajaxGet(url, cb, data) {
+		data = data || {};
+		var str = "";
+		for (var i in data) {
+			str += `${i}=${data[i]}&`;
+		}
+		var d = new Date();
+		url = url + "?" + str + "__qft=" + d.getTime();
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("get", url, true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				cb(xhr.responseText)
+			}
+		}
+		xhr.send();
+		
+	}
+</script>
+</html>

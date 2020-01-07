@@ -1,0 +1,152 @@
+*{
+	margin: 0;padding: 0;
+}
+ul,li,ol{
+	list-style: none;
+}
+a,u{
+	text-decoration: none;
+	color:black;
+}
+.container{
+	width: 85%;
+	margin: 0 auto;
+}
+$inline:inline;
+
+// header;
+header{
+	div div{
+		height: 66px;
+		line-height: 66px;
+		.login{
+			float:right;
+			.box{
+				display: inline-block;
+				position: absolute;
+				right:350px;
+				a{
+					margin-right: 20px;
+				}
+			}
+			.sc{
+				font-size: 50px;
+			}
+		}
+	}
+}
+
+//logo + search
+
+.search{
+	height: 120px;
+	position: relative;
+	.logo{
+		margin-top:20px;
+		float:left;
+	}
+	p{
+		margin-top: 50px;
+		float:left;
+	}
+	.ma{
+		position: absolute;
+		height: 120px;
+		right:100px;
+		top:0;
+		img{
+			border: 0;
+		}
+	}
+	form{
+		position: absolute;
+		top:50px;
+		left:640px;
+		text-align: center;
+	}
+}
+
+
+//nav
+nav{
+	height: 50px;
+	background: #ca0e25;
+	line-height: 50px;
+	div div{
+		width: 100px;
+		float:left;
+		margin-right: 118px;
+	}
+	ul{
+		display: inline-block;
+		li{
+			float:left;
+			width: 100px;
+			text-align: center;
+			margin-right: 50px;
+		}
+		li:hover{
+			background: #ab0116 ;
+		}
+	}
+}
+
+//search2
+.s{
+	height: 250px;
+	.sy{
+		line-height:50px;
+		height: 50px;
+		display: block;
+	}
+}
+
+
+
+
+main{
+	.sp{
+		 height:1480px;
+		.img{
+			width: 24%;
+			border:1px solid #ccc;
+			float:left;
+			margin-right: 10px;
+			span{
+				margin-left: 20px;
+			}
+			button{
+				float: right;
+				margin-right: 30px;
+			}
+		}
+	}
+}
+//paging
+.paging{
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+	button{
+		width: 30px;
+		height: 30px;
+	}
+}
+
+
+//aside
+
+aside{
+	position: absolute;
+	bottom:0;
+	right:0;
+	text-align: center;
+	width: 40px;
+	background: #000;
+	overflow: hidden;
+	p{
+		color:white;
+		margin-top: 260px;
+	}
+}
+

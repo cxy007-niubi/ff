@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/product.css">
+	</head>
+	<body>
+
+		<!-- header -->
+		<header>
+			<div class="container">
+				<div>鲜花速递网,鲜花预定,本地送花品牌鲜花店！全国送花热线：010-60777792/18511870338
+					<span class="login">
+						<p class="box">
+							<a href="login.html">登录</a>
+							<a href="register.html">注册</a>
+							<a href="##" class="goCar">购物车</a>
+						</p>
+						<span class="sc">心意商城</span>
+					</span>
+				</div>
+			</div>
+		</header>
+
+
+
+		<!-- logo+search -->
+		<div class="search">
+			<div class="container">
+				<div class="logo">
+					<img src="../images/logo.png" alt="">
+				</div>
+				<p>鲜花1-3小时全国快速送达!(非节日)</p>
+			</div>
+
+			<form action="">
+				<input type="text">
+				<input type="submit" value="搜索">
+			</form>
+			<div class="ma">
+				<img src="../images/header-ad.jpg" alt="">
+			</div>
+		</div>
+
+
+		<!-- nav -->
+		<nav>
+			<div class="container">
+				<div>所有种类</div>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="">所有鲜花</a></li>
+					<li><a href="">红玫瑰</a></li>
+					<li><a href="">生日鲜花</a></li>
+					<li><a href="">绿植花卉</a></li>
+					<li><a href="">仙人掌</a></li>
+				</ul>
+			</div>
+		</nav>
+
+
+		<!-- main -->
+		<main>
+			<div class="container">
+				<div class="top">
+					<a href="index.html">鲜花速递</a>>
+					<a href="search.html">送鲜花</a>>
+					<span></span>
+				</div>
+				<div class="mid">
+					<img src="" alt="">
+					<!-- n个小花 -->
+					<div class="right">
+						<span>
+							<!-- 名字 -->
+						</span>
+						<span>
+							<!-- 编号 -->
+						</span>
+						<p>
+							<span>订花价格:...</span>
+							<span>市场价格:...</span>
+						</p>
+						<b>立即购买</b>
+						
+						<b class = "r">加入购物车</b>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+	<script src = "../js/cookie.js"></script>
+	<script>
+		class Pro{
+			constructor() {
+			    this.mid = document.querySelector(".mid");
+				this.img();
+			}
+			img(){
+				console.log(getCookie("product").img);
+				console.log(JSON.parse(getCookie("product")))
+				// console.log(JSON.parse(JSON.stringify(getCookie("product"))).img)
+				// console.log(JSON.parse(getCookie("product")))
+				// this.mid.children[0].src = JSON.parse(getCookie("product")).img;
+			}
+		}
+		new Pro;
+	</script>
+</html>

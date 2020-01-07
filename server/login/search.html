@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/search.css">
+
+	</head>
+	<body>
+		<!-- header -->
+		<header>
+			<div class="container">
+				<div>鲜花速递网,鲜花预定,本地送花品牌鲜花店！全国送花热线：010-60777792/18511870338
+					<span class="login">
+						<p class="box">
+							<a href="login.html">登录</a>
+							<a href="register.html">注册</a>
+							<a href="##" class="goCar">购物车</a>
+						</p>
+						<span class="sc">心意商城</span>
+					</span>
+				</div>
+			</div>
+		</header>
+
+
+
+		<!-- logo+search -->
+		<div class="search">
+			<div class="container">
+				<div class="logo">
+					<img src="../images/logo.png" alt="">
+				</div>
+				<p>鲜花1-3小时全国快速送达!(非节日)</p>
+			</div>
+
+			<form action="">
+				<input type="text">
+				<input type="submit" value="搜索">
+			</form>
+			<div class="ma">
+				<img src="../images/header-ad.jpg" alt="">
+			</div>
+		</div>
+
+
+		<!-- nav -->
+		<nav>
+			<div class="container">
+				<div>所有种类</div>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="">所有鲜花</a></li>
+					<li><a href="">红玫瑰</a></li>
+					<li><a href="">生日鲜花</a></li>
+					<li><a href="">绿植花卉</a></li>
+					<li><a href="">仙人掌</a></li>
+				</ul>
+			</div>
+		</nav>
+
+
+		<!-- 选择2 -->
+		<div class="s">
+			<div class="container">
+				<span class="sy">
+					<a href="index.html">首页</a>
+				</span>
+				<div class="box">
+					<img src="../images/slw.PNG" alt="">
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- main -->
+		<main>
+			<div class="container">
+				<div class="top">
+					<button>默认排序</button>
+					<button>人气</button>
+					<button>价格</button>
+					<button>销量</button>
+					<button>最新</button>
+				</div>
+				<div class="sp">
+					<!-- <div class = "img">
+						<img src="" alt="">
+						<span></span>
+						<span></span>
+						<button>立即购买</button>
+					</div> -->
+				</div>
+			</div>
+		</main>
+
+
+		<!-- paging -->
+		<div class="paging">
+			<div class="container">
+
+			</div>
+		</div>
+		
+		<!-- aside -->
+		<aside>
+			<a href="car.html"><p>购<br>物<br>车 <br> <strong>0</strong></p></a>
+			<img src="../images/aside.PNG" alt="">
+		</aside>
+			
+		
+		<!-- footer -->
+		
+		<footer>
+			<img src="../images/toulan.PNG" alt="">
+		</footer>
+		
+	</body>
+	<script>
+		class Sp {
+			constructor() {
+				this.sp = document.querySelector("main .sp");
+				this.top = document.querySelector("main .top");
+				this.paging = document.querySelector(".paging");
+				this.aside = document.querySelector("aside");
+				this.s = document.querySelector(".s");
+				this.x = document.querySelector(".x");
+				this.num = 0;
+				this.length = 16;
+				this.url = "http://localhost:80/json/shujv.json";
+				this.init();
+				this.ajax();
+				this.addEvent();
+			}
+			init(){
+				this.aside.parentNode.style.width = document.documentElement.clientWidth + "px";
+				var that = this;
+				this.aside.style.height = document.documentElement.clientHeight + "px";
+				document.onscroll = function(){
+					that.aside.style.top = document.documentElement.scrollTop + "px";
+					that.aside.style.right = 0;
+				}
+			}
+			ajax() {
+				var that = this;
+				ajaxGet(this.url, function(res) {
+					that.res = JSON.parse(res);
+					that.pagingDisplay();
+					that.buttonDisplay();
+				})
+			}
+
+			pagingDisplay() {
+				var str = "";
+				for (var i = this.num * this.length; i < this.length * this.num + this.length; i++) {
+					if (i < this.res.length) {
+						str +=
+							`<div class = "img">
+								<img src="${this.res[i].img}" alt=""><br>
+								<span>${this.res[i].name}</span><br>
+								<span>¥${this.res[i].price}</span>
+								<button>加入购物车</button>
+							</div>`
+					}
+				}
+				this.sp.innerHTML = str ;
+				this.imgBox = document.querySelectorAll("main .sp .img");
+				console.log(this)
+				this.sp.style.height = this.imgBox[0].offsetHeight * Math.ceil(this.imgBox.length / 4) + "px";
+			}
+			buttonDisplay() {
+				var btnNum = Math.ceil(this.res.length / 4 / 4);
+				var str = "";
+				for (var i = 0; i < btnNum; i++) {
+					str += `
+						<button>${i+1}</button>
+					`
+				}
+				this.paging.children[0].innerHTML = `<button class="s"><<</button>${str}<button class="x">>></button>`;
+			}
+
+			addEvent() {
+				var that = this;
+				this.paging.children[0].onclick = function(eve) {
+					var e = eve || window.event;
+					var target = e.target || e.which;
+					that.page(target);
+				}
+
+				this.top.onclick = function(eve) {
+					var e = eve || window.event;
+					var target = e.target || e.which;
+					that.px(target);
+				}
+			}
+			page(target) {
+				if (target.tagName === "BUTTON") {
+					if(target.className == "s"){
+						if(this.num>0){
+							this.num--;
+						}
+					}else if(target.className == "x"){
+						if(this.num<target.parentNode.children.length-2){
+							this.num++;
+						}
+					}else{
+						this.num = target.innerHTML - 1;
+					}
+					for (var i = 0; i < target.parentNode.children.length; i++) {
+						target.parentNode.children[i].style.background = "#ccc";
+					}
+					console.log(target.parentNode.children[this.num+1])
+					console.log(this.num)
+					target.parentNode.children[this.num+1].style.background = "#ab0116";
+					}
+					document.documentElement.scrollTop = 0;
+					this.pagingDisplay();
+			}
+			px(target) {
+				if (target.tagName === "BUTTON") {
+					for (var i = 0; i < target.parentNode.children.length; i++) {
+						target.parentNode.children[i].style.background = "#ccc";
+					}
+					target.style.background = "#ab0116";
+					this.pagingDisplay();
+				}
+			}
+		}
+
+		new Sp();
+
+		function ajaxGet(url, cb, data) {
+			data = data || {};
+			var str = "";
+			for (var i in data) {
+				str += `${i}=${data[i]}&`;
+			}
+			var d = new Date();
+			url = url + "?" + str + "__qft=" + d.getTime();
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("get", url, true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					cb(xhr.responseText)
+				}
+			}
+			xhr.send();
+
+		}
+	</script>
+</html>

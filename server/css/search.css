@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+ul, li, ol {
+  list-style: none; }
+
+a, u {
+  text-decoration: none;
+  color: black; }
+
+.container {
+  width: 85%;
+  margin: 0 auto; }
+
+header div div {
+  height: 66px;
+  line-height: 66px; }
+  header div div .login {
+    float: right; }
+    header div div .login .box {
+      display: inline-block;
+      position: absolute;
+      right: 350px; }
+      header div div .login .box a {
+        margin-right: 20px; }
+    header div div .login .sc {
+      font-size: 50px; }
+
+.search {
+  height: 120px;
+  position: relative; }
+  .search .logo {
+    margin-top: 20px;
+    float: left; }
+  .search p {
+    margin-top: 50px;
+    float: left; }
+  .search .ma {
+    position: absolute;
+    height: 120px;
+    right: 100px;
+    top: 0; }
+    .search .ma img {
+      border: 0; }
+  .search form {
+    position: absolute;
+    top: 50px;
+    left: 640px;
+    text-align: center; }
+
+nav {
+  height: 50px;
+  background: #ca0e25;
+  line-height: 50px; }
+  nav div div {
+    width: 100px;
+    float: left;
+    margin-right: 118px; }
+  nav ul {
+    display: inline-block; }
+    nav ul li {
+      float: left;
+      width: 100px;
+      text-align: center;
+      margin-right: 50px; }
+    nav ul li:hover {
+      background: #ab0116; }
+
+.s {
+  height: 250px; }
+  .s .sy {
+    line-height: 50px;
+    height: 50px;
+    display: block; }
+
+main .sp {
+  height: 1480px; }
+  main .sp .img {
+    width: 24%;
+    border: 1px solid #ccc;
+    float: left;
+    margin-right: 10px; }
+    main .sp .img span {
+      margin-left: 20px; }
+    main .sp .img button {
+      float: right;
+      margin-right: 30px; }
+
+.paging {
+  text-align: center;
+  height: 60px;
+  line-height: 60px; }
+  .paging button {
+    width: 30px;
+    height: 30px; }
+
+aside {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  width: 40px;
+  background: #000;
+  overflow: hidden; }
+  aside p {
+    color: white;
+    margin-top: 260px; }

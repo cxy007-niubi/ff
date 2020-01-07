@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body, html {
+  width: 100%;
+  height: 100%; }
+  body .container, html .container {
+    width: 85%;
+    margin: 0 auto; }
+  body header, html header {
+    height: 40px;
+    line-height: 40px; }
+    body header p, html header p {
+      display: inline;
+      margin-right: 25%; }
+    body header h2, html header h2 {
+      display: inline;
+      font-size: 18px; }
+  body .logo, html .logo {
+    background-color: #ca0e25;
+    height: 120px;
+    position: relative; }
+    body .logo img, html .logo img {
+      margin-top: 20px; }
+    body .logo span, html .logo span {
+      position: absolute;
+      top: 50px;
+      left: 18%;
+      color: white; }
+    body .logo span:before, html .logo span:before {
+      content: "|";
+      position: absolute;
+      left: -20px; }
+  body main, html main {
+    background: url(../images/bg.jpg);
+    background-position: 40%;
+    position: relative; }
+    body main .box, html main .box {
+      border: 1px solid gainsboro;
+      background: #fff;
+      position: absolute;
+      top: 150px;
+      right: 120px;
+      width: 300px;
+      height: 320px;
+      text-align: center;
+      line-height: 20px; }
+      body main .box span, html main .box span {
+        display: block;
+        margin-bottom: 15px;
+        line-height: 30px;
+        font-size: 20px;
+        background: #ca0e25; }
+      body main .box input, html main .box input {
+        margin: 10px 0 15px 0;
+        height: 20px; }
+      body main .box input:nth-of-type(3), html main .box input:nth-of-type(3) {
+        margin-left: 40px; }
+      body main .box p, html main .box p {
+        display: inline; }

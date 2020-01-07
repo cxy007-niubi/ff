@@ -1,0 +1,125 @@
+// 1.单行注释不解析：静默注释
+/*
+    多行注释被解析：说明注释
+*/
+
+// 2.变量
+// $color:green red;
+// .box1{
+//     color: nth($color,2);
+// }
+
+// $l:(1 10px 20px)(2 20px 30px)(3 30px 40px);
+// @each $a,$b,$c in $l {
+//     .box#{$a}{
+//         width:$b;
+//         height:$c;
+//     }
+// }
+
+// $m:(h1:10px,h2:20px,h3:30px);
+// @each $key,$val in $m{
+//     #{$key}{
+//         font-size:$val;
+//     }
+// }
+
+// 3.嵌套
+// <ul class="list">
+//     <li>1</li>
+//     <li>2</li>
+//     <li>3</li>
+//     <li class="last">4</li>
+// </ul>
+// .list{
+//     width:100px;height: 100px;
+//     li{
+//         border: solid 1px black;
+//         &:hover{
+//             color:red
+//         }
+//         .box &{
+//             color: red;
+//         }
+//     }
+//     .last{
+//         border: none;
+//     }
+//     .box li{
+//         font-size: 10px;
+//     }
+// }
+
+// .box{
+//     border:{
+//         left:{
+//             width:1px;
+//             color: red;
+//             style:solid;
+//         }
+//         right:{
+//             width:2px;
+//             color:green;
+//         }
+//     }
+// }
+
+// 4.混合，类似于函数，但没有返回值
+// @mixin transform ($deg){
+//     -webkit-transform:$deg;
+//     -moz-transform:$deg;
+//     -ms-transform:$deg;
+//     -o-transform:$deg;
+//     transform:$deg;
+// }
+// .box1{
+//     @include transform(rotate(45deg));
+// }
+// .box2{
+//     @include transform(translate(100px));
+// }
+// .box3{
+//     @include transform(scale(0.5));
+// }
+
+
+// 5.运算
+// rem：相对尺寸，相对于html的font-size
+// .box{
+//     width:100px/16px*1rem;
+//     height:43px/16px*1rem;
+// }
+
+// $fs:30px;
+// html{font-size: $fs;}
+
+// 6.函数
+// @function pTr($px){
+//     @return $px / $fs * 1rem;
+// }
+// .box{
+//     width:pTr(67px);
+//     height:pTr(123px);
+// }
+
+// 7.继承
+// .box1{
+//     width:100px;
+//     height:100px;
+// }
+// .box2{
+//     background: green;
+// }
+// .box3{
+//     border: solid 1px black;
+// }
+// .box4{
+//     @extend .box1;
+//     @extend .box2;
+//     @extend .box3;
+//     font-size: 16px;
+// }
+
+// 8.合并其他sass
+// @import "index.scss";
+
